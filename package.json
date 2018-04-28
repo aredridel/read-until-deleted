@@ -1,0 +1,26 @@
+{
+  "name": "read-until-deleted",
+  "version": "1.0.0",
+  "description": "Read a file, tailing it for changes, until it's deleted",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "keywords": [
+    "stream",
+    "tail"
+  ],
+  "author": "Aria Stewart <aredridel@dinhe.net>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aredridel/read-until-deleted.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aredridel/read-until-deleted/issues"
+  },
+  "homepage": "https://github.com/aredridel/read-until-deleted#readme",
+  "devDependencies": {
+    "tape": "^4.9.0"
+  }
+}
