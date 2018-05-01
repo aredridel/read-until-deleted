@@ -2,8 +2,6 @@
 
 const { open, watch, stat } = require('mz/fs')
 const createReadStream = require('fd-read-stream')
-const pump = require('pump')
-const { pipeline, map } = require('promise-streams')
 
 module.exports = async function readUntilDeleted(file, options = { timeout: 10000 }) {
     const baseState = await stat(file)
