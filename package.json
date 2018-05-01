@@ -1,6 +1,6 @@
 {
   "name": "read-until-deleted",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Read a file, tailing it for changes, until it's deleted",
   "main": "index.js",
   "scripts": {
