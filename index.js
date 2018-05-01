@@ -4,10 +4,13 @@ const { open, watch, stat } = require('mz/fs')
 const createReadStream = require('fd-read-stream')
 
 module.exports = async function readUntilDeleted(file, options = { timeout: 10000 }) {
+    const timeout = options.timeout || 10000
+
     const baseState = await stat(file)
     const watcher = watch(file)
-    const reader = createReadStream(await open(file, 'r'), { tail: true })
-    const { timeout } = options
+    const fd = await open(file, 'r')
+    const reader = createReadStream(fd, Object.assign({}, options, { tail: true }))
+    if (options.start) reader.bytesRead = options.start
 
     watcher.on('change', async (eventType, newName) => {
         if (eventType != 'rename') return;
