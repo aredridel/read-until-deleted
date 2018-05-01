@@ -24,11 +24,9 @@
     "tape": "^4.9.0"
   },
   "dependencies": {
-    "async-main": "^1.0.2",
     "fd-read-stream": "^1.1.0",
     "mz": "^2.7.0",
     "promise-streams": "^2.1.1",
-    "pump": "^3.0.0",
-    "through2": "^2.0.3"
+    "pump": "^3.0.0"
   }
 }
