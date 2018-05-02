@@ -19,6 +19,14 @@
   "bugs": {
     "url": "https://github.com/aredridel/read-until-deleted/issues"
   },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
+    "env": {
+      "node": true
+    }
+  },
   "homepage": "https://github.com/aredridel/read-until-deleted#readme",
   "devDependencies": {
     "tape": "^4.9.0"
