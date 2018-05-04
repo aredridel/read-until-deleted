@@ -10,7 +10,8 @@ module.exports = async function readUntilDeleted(file, options = { timeout: 1000
     const baseState = await stat(file)
     const watcher = watch(file)
     const fh = await open(file, 'r')
-    const reader = createReadStream(fh.fd, Object.assign({}, options, { fh, tail: true }))
+    const reader = createReadStream(fh.fd, Object.assign({}, options, { tail: true }))
+    reader.fh = fh
     if (options.start) reader.bytesRead = options.start
 
     watcher.on('change', async (eventType, newName) => {
