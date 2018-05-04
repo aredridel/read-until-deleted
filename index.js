@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const { open, watch, stat } = require('mz/fs')
+const { open, stat } = require('fs/promises')
+const { watch } = require('fs')
 const createReadStream = require('fd-read-stream')
 
 module.exports = async function readUntilDeleted(file, options = { timeout: 10000 }) {
@@ -8,8 +9,8 @@ module.exports = async function readUntilDeleted(file, options = { timeout: 1000
 
     const baseState = await stat(file)
     const watcher = watch(file)
-    const fd = await open(file, 'r')
-    const reader = createReadStream(fd, Object.assign({}, options, { tail: true }))
+    const fh = await open(file, 'r')
+    const reader = createReadStream(fh.fd, Object.assign({}, options, { tail: true }))
     if (options.start) reader.bytesRead = options.start
 
     watcher.on('change', async (eventType, newName) => {

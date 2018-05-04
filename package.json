@@ -31,8 +31,10 @@
   "devDependencies": {
     "tape": "^4.9.0"
   },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
   "dependencies": {
-    "fd-read-stream": "^1.1.0",
-    "mz": "^2.7.0"
+    "fd-read-stream": "^1.1.0"
   }
 }
