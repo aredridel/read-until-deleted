@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
-const { open, stat } = require('fs/promises')
+const { promisify } = require('util')
+const open = promisify(require('fs').open)
+const stat = promisify(require('fs').stat)
 const { watch } = require('fs')
 const createReadStream = require('fd-read-stream')
 
@@ -10,7 +12,7 @@ module.exports = async function readUntilDeleted(file, options = { timeout: 1000
     const baseState = await stat(file)
     const watcher = watch(file)
     const fh = await open(file, 'r')
-    const reader = createReadStream(fh.fd, Object.assign({}, options, { tail: true }))
+    const reader = createReadStream(fh, Object.assign({}, options, { tail: true }))
     reader.fh = fh
     if (options.start) reader.bytesRead = options.start
 

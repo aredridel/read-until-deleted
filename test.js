@@ -1,6 +1,7 @@
 const tape = require('tape')
 const readUntilDeleted = require('./')
-const { unlink } = require('fs/promises')
+const promisify = require('util').promisify
+const unlink = promisify(require('fs').unlink)
 const { createWriteStream } = require('fs')
 
 tape('watchAndStream', t => {
