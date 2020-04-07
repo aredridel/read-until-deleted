@@ -16,6 +16,11 @@ module.exports = async function readUntilDeleted(file, options = { timeout: 1000
     reader.fh = fh
     if (options.start) reader.bytesRead = options.start
 
+    reader.destroy = (destroy => (...args) => {
+        destroy.call(reader, ...args);
+        watcher.close();
+    })(reader.destroy);
+
     watcher.on('change', async (eventType, newName) => {
         if (eventType != 'rename') return;
         try {
